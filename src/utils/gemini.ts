@@ -36,16 +36,10 @@ export async function generateSummary(content: string): Promise<string> {
     // 응답에서 텍스트 추출 (다양한 응답 형식 지원)
     let summary: string | undefined
     
-    if (typeof response.text === 'string') {
-      summary = response.text
-    } else if (typeof response.text === 'function') {
-      summary = response.text()
+    if (response.text) {
+      summary = typeof response.text === 'string' ? response.text : String(response.text)
     } else if (response.candidates && response.candidates[0]?.content?.parts?.[0]?.text) {
       summary = response.candidates[0].content.parts[0].text
-    } else if (response.response?.text) {
-      summary = typeof response.response.text === 'function' 
-        ? response.response.text() 
-        : response.response.text
     }
 
     if (!summary || summary.trim().length === 0) {
@@ -81,16 +75,10 @@ export async function generateTags(content: string): Promise<string[]> {
     // 응답에서 텍스트 추출 (다양한 응답 형식 지원)
     let tagsText: string | undefined
     
-    if (typeof response.text === 'string') {
-      tagsText = response.text
-    } else if (typeof response.text === 'function') {
-      tagsText = response.text()
+    if (response.text) {
+      tagsText = typeof response.text === 'string' ? response.text : String(response.text)
     } else if (response.candidates && response.candidates[0]?.content?.parts?.[0]?.text) {
       tagsText = response.candidates[0].content.parts[0].text
-    } else if (response.response?.text) {
-      tagsText = typeof response.response.text === 'function' 
-        ? response.response.text() 
-        : response.response.text
     }
 
     if (!tagsText || tagsText.trim().length === 0) {

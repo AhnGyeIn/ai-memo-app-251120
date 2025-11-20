@@ -75,7 +75,7 @@ export default function MemoViewerModal({
         if (data.summary) {
           setSummary(data.summary)
         }
-      } catch (err) {
+      } catch {
         // 요약이 없으면 에러로 처리하지 않음
         console.log('No saved summary found')
       } finally {
