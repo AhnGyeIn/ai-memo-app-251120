@@ -1,0 +1,420 @@
+@import 'tailwindcss';
+@import '@uiw/react-md-editor/markdown-editor.css';
+@import '@uiw/react-markdown-preview/markdown.css';
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Custom utilities */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Markdown Preview 스타일 개선 */
+.markdown-preview-wrapper {
+  color: #24292e;
+}
+
+.markdown-preview-wrapper ul,
+.markdown-preview-wrapper ol {
+  margin: 16px 0;
+  padding-left: 30px;
+  list-style-position: outside;
+}
+
+.markdown-preview-wrapper ul {
+  list-style-type: disc;
+}
+
+.markdown-preview-wrapper ul ul {
+  list-style-type: circle;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.markdown-preview-wrapper ul ul ul {
+  list-style-type: square;
+}
+
+.markdown-preview-wrapper ol {
+  list-style-type: decimal;
+}
+
+/* MDEditor 프리뷰 영역 스타일 */
+.w-md-editor-preview ol,
+.wmde-markdown ol,
+[data-color-mode] ol {
+  margin: 16px 0 !important;
+  padding-left: 30px !important;
+  list-style-type: decimal !important;
+  list-style-position: outside !important;
+  counter-reset: item;
+}
+
+.w-md-editor-preview ol li,
+.wmde-markdown ol li,
+[data-color-mode] ol li {
+  margin: 8px 0 !important;
+  line-height: 1.6 !important;
+  display: list-item !important;
+  padding-left: 4px !important;
+  list-style-type: decimal !important;
+}
+
+.w-md-editor-preview ol ol,
+.wmde-markdown ol ol,
+[data-color-mode] ol ol {
+  list-style-type: lower-alpha !important;
+  margin-top: 8px !important;
+  margin-bottom: 8px !important;
+}
+
+.w-md-editor-preview ol ol ol,
+.wmde-markdown ol ol ol,
+[data-color-mode] ol ol ol {
+  list-style-type: lower-roman !important;
+}
+
+.w-md-editor-preview ul,
+.wmde-markdown ul,
+[data-color-mode] ul {
+  margin: 16px 0 !important;
+  padding-left: 30px !important;
+  list-style-type: disc !important;
+  list-style-position: outside !important;
+}
+
+.w-md-editor-preview ul li,
+.wmde-markdown ul li,
+[data-color-mode] ul li {
+  margin: 8px 0 !important;
+  line-height: 1.6 !important;
+  display: list-item !important;
+  padding-left: 4px !important;
+  list-style-type: disc !important;
+}
+
+.w-md-editor-preview ul ul,
+.wmde-markdown ul ul,
+[data-color-mode] ul ul {
+  list-style-type: circle !important;
+  margin-top: 8px !important;
+  margin-bottom: 8px !important;
+}
+
+.w-md-editor-preview ul ul ul,
+.wmde-markdown ul ul ul,
+[data-color-mode] ul ul ul {
+  list-style-type: square !important;
+}
+
+.markdown-preview-wrapper li {
+  margin: 8px 0;
+  line-height: 1.6;
+  display: list-item;
+  padding-left: 4px;
+}
+
+.markdown-preview-wrapper h1,
+.markdown-preview-wrapper h2,
+.markdown-preview-wrapper h3,
+.markdown-preview-wrapper h4,
+.markdown-preview-wrapper h5,
+.markdown-preview-wrapper h6 {
+  margin-top: 24px;
+  margin-bottom: 16px;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.markdown-preview-wrapper h1 {
+  font-size: 2em;
+  border-bottom: 1px solid #eaecef;
+  padding-bottom: 0.3em;
+}
+
+.markdown-preview-wrapper h2 {
+  font-size: 1.5em;
+  border-bottom: 1px solid #eaecef;
+  padding-bottom: 0.3em;
+}
+
+.markdown-preview-wrapper h3 {
+  font-size: 1.25em;
+}
+
+.markdown-preview-wrapper p {
+  margin: 16px 0;
+  line-height: 1.6;
+}
+
+.markdown-preview-wrapper code {
+  padding: 0.2em 0.4em;
+  margin: 0;
+  font-size: 85%;
+  background-color: rgba(27, 31, 35, 0.05);
+  border-radius: 3px;
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+}
+
+.markdown-preview-wrapper pre {
+  padding: 16px;
+  overflow: auto;
+  font-size: 85%;
+  line-height: 1.45;
+  background-color: #f6f8fa;
+  border-radius: 6px;
+  margin: 16px 0;
+}
+
+.markdown-preview-wrapper pre code {
+  display: inline;
+  padding: 0;
+  margin: 0;
+  overflow: visible;
+  line-height: inherit;
+  word-wrap: normal;
+  background-color: transparent;
+  border: 0;
+}
+
+.markdown-preview-wrapper blockquote {
+  padding: 0 1em;
+  color: #6a737d;
+  border-left: 0.25em solid #dfe2e5;
+  margin: 16px 0;
+}
+
+.markdown-preview-wrapper table {
+  border-spacing: 0;
+  border-collapse: collapse;
+  margin: 16px 0;
+  width: 100%;
+}
+
+.markdown-preview-wrapper table th,
+.markdown-preview-wrapper table td {
+  padding: 6px 13px;
+  border: 1px solid #dfe2e5;
+}
+
+.markdown-preview-wrapper table th {
+  font-weight: 600;
+  background-color: #f6f8fa;
+}
+
+.markdown-preview-wrapper table tr {
+  background-color: #fff;
+  border-top: 1px solid #c6cbd1;
+}
+
+.markdown-preview-wrapper table tr:nth-child(2n) {
+  background-color: #f6f8fa;
+}
+
+.markdown-preview-wrapper a {
+  color: #0366d6;
+  text-decoration: none;
+}
+
+.markdown-preview-wrapper a:hover {
+  text-decoration: underline;
+}
+
+.markdown-preview-wrapper img {
+  max-width: 100%;
+  height: auto;
+  margin: 16px 0;
+}
+
+.markdown-preview-wrapper hr {
+  height: 0.25em;
+  padding: 0;
+  margin: 24px 0;
+  background-color: #e1e4e8;
+  border: 0;
+}
+
+/* MDEditor 모달 내부 반응형 스타일 */
+[data-color-mode="light"] .w-md-editor,
+[data-color-mode="light"] .wmde-markdown {
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box;
+}
+
+/* preview="edit" 모드에서 편집 영역과 프리뷰 영역 나란히 배치 */
+.w-md-editor-area {
+  display: flex !important;
+  flex-direction: row !important;
+  width: 100% !important;
+  box-sizing: border-box;
+}
+
+.w-md-editor-text {
+  flex: 1 1 50% !important;
+  min-width: 0 !important;
+  max-width: 50% !important;
+  box-sizing: border-box;
+  overflow: hidden;
+  position: relative !important;
+}
+
+.w-md-editor-text-textarea {
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box;
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+/* 프리뷰 영역이 텍스트 영역 내부에 있을 경우 분리 */
+.w-md-editor-text .w-md-editor-preview,
+.w-md-editor-text .wmde-markdown {
+  position: absolute !important;
+  top: 0 !important;
+  left: 50% !important;
+  width: 50% !important;
+  height: 100% !important;
+  box-sizing: border-box;
+  overflow-x: auto !important;
+  overflow-y: auto !important;
+  border-left: 1px solid #e1e4e8 !important;
+  padding-left: 16px !important;
+  padding-right: 16px !important;
+  background-color: #fff !important;
+  z-index: 2 !important;
+}
+
+/* 프리뷰가 별도 영역으로 있을 경우 */
+.w-md-editor-preview {
+  flex: 1 1 50% !important;
+  min-width: 0 !important;
+  max-width: 50% !important;
+  box-sizing: border-box;
+  overflow-x: auto !important;
+  overflow-y: auto !important;
+  border-left: 1px solid #e1e4e8 !important;
+  padding-left: 16px !important;
+  padding-right: 16px !important;
+}
+
+/* preview 모드일 때: code 영역 숨기고 preview 영역 전체 폭 차지 */
+.w-md-editor-show-preview .w-md-editor-area {
+  display: flex !important;
+  flex-direction: row !important;
+}
+
+.w-md-editor-show-preview .w-md-editor-text {
+  display: none !important;
+}
+
+.w-md-editor-show-preview .w-md-editor-preview,
+.w-md-editor-show-preview .wmde-markdown {
+  flex: 1 1 100% !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  box-sizing: border-box;
+  overflow-x: auto !important;
+  overflow-y: auto !important;
+  border-left: none !important;
+  padding-left: 16px !important;
+  padding-right: 16px !important;
+}
+
+/* preview 모드일 때 텍스트 영역 내부의 프리뷰도 전체 폭 차지 */
+.w-md-editor-show-preview .w-md-editor-text .w-md-editor-preview,
+.w-md-editor-show-preview .w-md-editor-text .wmde-markdown {
+  position: static !important;
+  left: auto !important;
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+/* preview 모드일 때 에디터 자체도 전체 폭 차지 */
+.w-md-editor-show-preview {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+.w-md-editor-show-preview .w-md-editor-content {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+/* MDEditor 툴바 버튼 레이아웃 수정 */
+.w-md-editor-toolbar,
+.w-md-editor-toolbar ul {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  gap: 0 !important;
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.w-md-editor-toolbar li,
+.w-md-editor-toolbar ul li {
+  display: inline-block !important;
+  list-style: none !important;
+  list-style-type: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  width: auto !important;
+  height: auto !important;
+}
+
+.w-md-editor-toolbar li button,
+.w-md-editor-toolbar ul li button {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+/* 모달 내부 폼 요소 반응형 */
+.max-w-5xl form > div {
+  width: 100%;
+}
+
+.max-w-5xl form input,
+.max-w-5xl form select,
+.max-w-5xl form textarea {
+  width: 100%;
+  box-sizing: border-box;
+}
+
